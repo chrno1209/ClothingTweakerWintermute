@@ -8,43 +8,7 @@ namespace ClothingTweaker
 		public ClothingTweakerTorsoOuterSettings(string relativeJsonFilePath) : base(relativeJsonFilePath)
 		{
 		}
-		//Astrid's Jacket
-		[Section("Astrid's Jacket")]
-		[Name("Warmth")]
-		[Description("Default is 2°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridJacketWarmth = 2.0f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 1°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridJacketWetWarmth = 1.0f;
-
-		[Name("Windproof")]
-		[Description("Default is 2°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridJacketWindproof = 2.0f;
-
-		[Name("Waterproof")]
-		[Description("Default is 30%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float astridJacketWaterproof = 0.3f;
-
-		[Name("Protection")]
-		[Description("Default is 3%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float astridJacketProtection = 3.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 4%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float astridJacketMobility = 4.0f;
-
-		[Name("Weight")]
-		[Description("Default is 1.25 kg")]
-		[Slider(0f, 5f, 101, NumberFormat = "{0:0.##} kg")]
-		public float astridJacketWeight = 1.25f;
-
+	
 
 		//Bearskin Coat
 		[Section("Bearskin Coat")]
@@ -196,44 +160,6 @@ namespace ClothingTweaker
 		[Description("Default is 1 kg")]
 		[Slider(0f, 5f, 101, NumberFormat = "{0:0.##} kg")]
 		public float lightShellWeight = 1.0f;
-
-
-		//Mackenzie's Parka
-		[Section("Mackenzie's Parka")]
-		[Name("Warmth")]
-		[Description("Default is 2°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesParkaWarmth = 2.0f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 1°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesParkaWetWarmth = 1.0f;
-
-		[Name("Windproof")]
-		[Description("Default is 2°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesParkaWindproof = 2.0f;
-
-		[Name("Waterproof")]
-		[Description("Default is 30%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float mackenziesParkaWaterproof = 0.3f;
-
-		[Name("Protection")]
-		[Description("Default is 3%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float mackenziesParkaProtection = 3.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 4%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float mackenziesParkaMobility = 4.0f;
-
-		[Name("Weight")]
-		[Description("Default is 1.25 kg")]
-		[Slider(0f, 5f, 101, NumberFormat = "{0:0.##} kg")]
-		public float mackenziesParkaWeight = 1.25f;
 
 
 		//Mackinaw Jacket
@@ -655,9 +581,9 @@ namespace ClothingTweaker
 		protected override void OnConfirm()
 		{
 			base.OnConfirm();
-			ChangePrefabs();
+			//ChangePrefabs();
 		}
-
+		/*
 		internal void ChangePrefabs()
 		{
 			if (SettingsMain.mainSettings.modFunction)
@@ -688,6 +614,7 @@ namespace ClothingTweaker
 												SettingsTorsoOuter.torsoOuterSettings.wolfskinCoatWeight);
 			}
 		}
+		*/
 	}
 
 	internal static class SettingsTorsoOuter
@@ -700,7 +627,7 @@ namespace ClothingTweaker
 			{
 				torsoOuterSettings = new ClothingTweakerTorsoOuterSettings("ClothingTweakerTorsoOuter");
 				if (SettingsMain.mainSettings.showTorsoOuter == ShowHideDisable.Show) torsoOuterSettings.AddToModSettings("Clothing Tweaker: Torso (Outer)");
-				torsoOuterSettings.ChangePrefabs();
+				//torsoOuterSettings.ChangePrefabs();
 			}
 		}
 	}

@@ -86,44 +86,6 @@ namespace ClothingTweaker
 
 		//Outer
 
-		//Astrid's Jeans
-		[Section("Astrid's Jeans")]
-		[Name("Warmth")]
-		[Description("Default is 1°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridJeansWarmth = 1.0f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 0°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridJeansWetWarmth = 0.0f;
-
-		[Name("Windproof")]
-		[Description("Default is 0°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridJeansWindproof = 0.0f;
-
-		[Name("Waterproof")]
-		[Description("Default is 0%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float astridJeansWaterproof = 0.0f;
-
-		[Name("Protection")]
-		[Description("Default is 2%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float astridJeansProtection = 2.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 1%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float astridJeansMobility = 1.0f;
-
-		[Name("Weight")]
-		[Description("Default is 0.5 kg")]
-		[Slider(0f, 2.5f, 51, NumberFormat = "{0:0.##} kg")]
-		public float astridJeansWeight = 0.5f;
-
-
 		//Cargo Pants
 		[Section("Cargo Pants")]
 		[Name("Warmth")]
@@ -276,44 +238,6 @@ namespace ClothingTweaker
 		public float jeansWeight = 0.5f;
 
 
-		//Mackenzie's Pants
-		[Section("Mackenzie's Pants")]
-		[Name("Warmth")]
-		[Description("Default is 1°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesPantsWarmth = 1.0f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 0°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesPantsWetWarmth = 0.0f;
-
-		[Name("Windproof")]
-		[Description("Default is 0°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesPantsWindproof = 0.0f;
-
-		[Name("Waterproof")]
-		[Description("Default is 0%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float mackenziesPantsWaterproof = 0.0f;
-
-		[Name("Protection")]
-		[Description("Default is 2%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float mackenziesPantsProtection = 2.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 1%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float mackenziesPantsMobility = 1.0f;
-
-		[Name("Weight")]
-		[Description("Default is 0.5 kg")]
-		[Slider(0f, 2.5f, 51, NumberFormat = "{0:0.##} kg")]
-		public float mackenziesPantsWeight = 0.5f;
-
-
 		//Snow Pants
 		[Section("Snow Pants")]
 		[Name("Warmth")]
@@ -392,9 +316,9 @@ namespace ClothingTweaker
 		protected override void OnConfirm()
 		{
 			base.OnConfirm();
-			ChangePrefabs();
+			//ChangePrefabs();
 		}
-
+		/*
 		internal void ChangePrefabs()
 		{
 			if (SettingsMain.mainSettings.modFunction)
@@ -409,6 +333,7 @@ namespace ClothingTweaker
 											SettingsLegs.legsSettings.deerskinPantsWeight);
 			}
 		}
+		*/
 	}
 
 	internal static class SettingsLegs
@@ -421,7 +346,7 @@ namespace ClothingTweaker
 			{
 				legsSettings = new ClothingTweakerLegsSettings("ClothingTweakerLegs");
 				if (SettingsMain.mainSettings.showLegs == ShowHideDisable.Show) legsSettings.AddToModSettings("Clothing Tweaker: Legs");
-				legsSettings.ChangePrefabs();
+				//legsSettings.ChangePrefabs();
 			}
 		}
 	}

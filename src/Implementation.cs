@@ -18,6 +18,7 @@ namespace ClothingTweaker
             SettingsTorsoInner.OnLoad();
             SettingsTorsoOuter.OnLoad();
             SettingsModClothes.OnLoad();
+            SettingsDLC.OnLoad();
         }
     }
 }

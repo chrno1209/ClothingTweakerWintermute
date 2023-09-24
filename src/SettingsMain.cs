@@ -79,8 +79,12 @@ namespace ClothingTweaker
 		[Name("Show Mod Clothes")]
 		[Description("SHOW menu; settings will be applied.\nHIDE menu; settings WILL STILL BE APPLIED.\nDISABLE menu; settings WILL NOT BE APPLIED.\nMenu will Show/Hide when you RESTART the game!")]
 		public ShowHideDisable showModClothes = ShowHideDisable.Show;
-		
-		protected override void OnChange(FieldInfo field, object oldValue, object newValue)
+
+        [Name("Show DLC Clothes")]
+        [Description("SHOW menu; settings will be applied.\nHIDE menu; settings WILL STILL BE APPLIED.\nDISABLE menu; settings WILL NOT BE APPLIED.\nMenu will Show/Hide when you RESTART the game!")]
+        public ShowHideDisable showDLCClothes = ShowHideDisable.Show;
+
+        protected override void OnChange(FieldInfo field, object oldValue, object newValue)
 		{
 			if (field.Name == nameof(modFunction) ||
 				field.Name == nameof(clothingDecay))
@@ -101,7 +105,8 @@ namespace ClothingTweaker
 			SetFieldVisible(nameof(showHead), SettingsMain.mainSettings.modFunction);
 			SetFieldVisible(nameof(showLegs), SettingsMain.mainSettings.modFunction);
 			SetFieldVisible(nameof(showModClothes), SettingsMain.mainSettings.modFunction);
-			SetFieldVisible(nameof(showTorsoInner), SettingsMain.mainSettings.modFunction);
+            SetFieldVisible(nameof(showDLCClothes), SettingsMain.mainSettings.modFunction);
+            SetFieldVisible(nameof(showTorsoInner), SettingsMain.mainSettings.modFunction);
 			SetFieldVisible(nameof(showTorsoOuter), SettingsMain.mainSettings.modFunction);
 		}
 	}

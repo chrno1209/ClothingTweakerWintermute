@@ -8,43 +8,6 @@ namespace ClothingTweaker
 		public ClothingTweakerHeadSettings(string relativeJsonFilePath) : base(relativeJsonFilePath)
 		{
 		}
-		//Astrid's Toque
-		[Section("Astrid's Toque")]
-		[Name("Warmth")]
-		[Description("Default is 1.5°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridToqueWarmth = 1.5f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 0.75°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridToqueWetWarmth = 0.75f;
-
-		[Name("Windproof")]
-		[Description("Default is 0.75°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridToqueWindproof = 0.75f;
-
-		[Name("Waterproof")]
-		[Description("Default is 30%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float astridToqueWaterproof = 0.3f;
-
-		[Name("Protection")]
-		[Description("Default is 2%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float astridToqueProtection = 2.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 0%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float astridToqueMobility = 0.0f;
-
-		[Name("Weight")]
-		[Description("Default is 0.15 kg")]
-		[Slider(0f, 0.5f, 11, NumberFormat = "{0:0.##} kg")]
-		public float astridToqueWeight = 0.15f;
-
 
 		//Balaclava
 		[Section("Balaclava")]
@@ -274,44 +237,6 @@ namespace ClothingTweaker
 		public float longWoolScarfWeight = 0.25f;
 
 
-		//Mackenzie's Toque
-		[Section("Mackenzie's Toque")]
-		[Name("Warmth")]
-		[Description("Default is 1.5°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesToqueWarmth = 1.5f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 0.75°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesToqueWetWarmth = 0.75f;
-
-		[Name("Windproof")]
-		[Description("Default is 0.75°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesToqueWindproof = 0.75f;
-
-		[Name("Waterproof")]
-		[Description("Default is 30%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float mackenziesToqueWaterproof = 0.3f;
-
-		[Name("Protection")]
-		[Description("Default is 2%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float mackenziesToqueProtection = 2.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 0%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float mackenziesToqueMobility = 0.0f;
-
-		[Name("Weight")]
-		[Description("Default is 0.15 kg")]
-		[Slider(0f, 0.5f, 11, NumberFormat = "{0:0.##} kg")]
-		public float mackenziesToqueWeight = 0.15f;
-
-
 		//Rabbitskin Hat
 		[Section("Rabbitskin Hat")]
 		[Name("Warmth")]
@@ -428,9 +353,10 @@ namespace ClothingTweaker
 		protected override void OnConfirm()
 		{
 			base.OnConfirm();
-			ChangePrefabs();
+			//ChangePrefabs();
 		}
 
+		/*
 		internal void ChangePrefabs()
 		{
 			if (SettingsMain.mainSettings.modFunction)
@@ -445,6 +371,8 @@ namespace ClothingTweaker
 											SettingsHead.headSettings.rabbitskinHatWeight);
 			}
 		}
+		*/
+		
 	}
 
 	internal static class SettingsHead
@@ -457,7 +385,7 @@ namespace ClothingTweaker
 			{
 				headSettings = new ClothingTweakerHeadSettings("ClothingTweakerHead");
 				if (SettingsMain.mainSettings.showHead == ShowHideDisable.Show) headSettings.AddToModSettings("Clothing Tweaker: Head");
-				headSettings.ChangePrefabs();
+				//headSettings.ChangePrefabs();
 			}
 		}
 	}

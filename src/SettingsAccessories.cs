@@ -66,9 +66,9 @@ namespace ClothingTweaker
 		public float cramponsWindproof = 0.0f;
 
 		[Name("Waterproof")]
-		[Description("Default is 70%")]
+		[Description("Default is 100%")]
 		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float cramponsWaterproof = 0.7f;
+		public float cramponsWaterproof = 1.0f;
 
 		[Name("Protection")]
 		[Description("Default is 3%")]
@@ -86,8 +86,46 @@ namespace ClothingTweaker
 		public float cramponsWeight = 0.5f;
 
 
-		//Moose-hide Satchel
-		[Section("Moose-hide Satchel")]
+        //Improvised Crampons
+        [Section("Improvised Crampons")]
+        [Name("Warmth")]
+        [Description("Default is 0°C")]
+        [Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
+        public float improvCramponsWarmth = 0.0f;
+
+        [Name("Warmth When Wet")]
+        [Description("Default is 0°C")]
+        [Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
+        public float improvCramponsWetWarmth = 0.0f;
+
+        [Name("Windproof")]
+        [Description("Default is 0°C")]
+        [Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
+        public float improvCramponsWindproof = 0.0f;
+
+        [Name("Waterproof")]
+        [Description("Default is 100%")]
+        [Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
+        public float improvCramponsWaterproof = 1.0f;
+
+        [Name("Protection")]
+        [Description("Default is 0%")]
+        [Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
+        public float improvCramponsProtection = 3.0f;
+
+        [Name("Mobility")]
+        [Description("Default is 0%")]
+        [Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
+        public float improvCramponsMobility = 5.0f;
+
+        [Name("Weight")]
+        [Description("Default is 0.75 kg")]
+        [Slider(0f, 1f, 21, NumberFormat = "{0:0.##} kg")]
+        public float improvCramponsWeight = 0.75f;
+
+
+        //Moose-hide Satchel
+        [Section("Moose-hide Satchel")]
 		[Name("Warmth")]
 		[Description("Default is 0°C")]
 		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
@@ -165,8 +203,9 @@ namespace ClothingTweaker
 		protected override void OnConfirm()
 		{
 			base.OnConfirm();
-			ChangePrefabs();
+			//ChangePrefabs();
 		}
+		/*
 		internal void ChangePrefabs()
 		{
 			if (SettingsMain.mainSettings.modFunction)
@@ -181,6 +220,7 @@ namespace ClothingTweaker
 												SettingsAccessories.accessorySettings.moosehideSatchelWeight);
 			}
 		}
+		*/
 	}
 
 	internal static class SettingsAccessories
@@ -193,7 +233,7 @@ namespace ClothingTweaker
             {
 				accessorySettings = new ClothingTweakerAccessoriesSettings("ClothingTweakerAccessories");
 				if (SettingsMain.mainSettings.showAccessories == ShowHideDisable.Show) accessorySettings.AddToModSettings("Clothing Tweaker: Accessories");
-				accessorySettings.ChangePrefabs();
+				//accessorySettings.ChangePrefabs();
             }
 		}
 	}

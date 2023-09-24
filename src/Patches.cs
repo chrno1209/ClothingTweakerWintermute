@@ -1,8 +1,9 @@
 ﻿using System;
 using HarmonyLib;
-using UnhollowerBaseLib;
 using UnityEngine;
 using MelonLoader;
+using Il2Cpp;
+using ModSettings;
 
 namespace ClothingTweaker
 {
@@ -15,6 +16,7 @@ namespace ClothingTweaker
             {
                 if (SettingsMain.mainSettings.modFunction && __instance.m_ClothingItem)
                 {
+                    
                     if (SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         SettingsModClothes.modClothesSettings.ChangePrefabs();
@@ -25,73 +27,10 @@ namespace ClothingTweaker
                         updateDecayRates(__instance);
                     }
 
-                    if (__instance.m_GearName == "GEAR_AstridBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsFeet.feetSettings.astridBootsWarmth,
-                                                            SettingsFeet.feetSettings.astridBootsWetWarmth,
-                                                            SettingsFeet.feetSettings.astridBootsWindproof,
-                                                            SettingsFeet.feetSettings.astridBootsWaterproof,
-                                                            SettingsFeet.feetSettings.astridBootsProtection,
-                                                            SettingsFeet.feetSettings.astridBootsMobility,
-                                                            SettingsFeet.feetSettings.astridBootsWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_AstridGloves" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsHands.handsSettings.astridGlovesWarmth,
-                                                            SettingsHands.handsSettings.astridGlovesWetWarmth,
-                                                            SettingsHands.handsSettings.astridGlovesWindproof,
-                                                            SettingsHands.handsSettings.astridGlovesWaterproof,
-                                                            SettingsHands.handsSettings.astridGlovesProtection,
-                                                            SettingsHands.handsSettings.astridGlovesMobility,
-                                                            SettingsHands.handsSettings.astridGlovesWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_AstridJacket" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsTorsoOuter.torsoOuterSettings.astridJacketWarmth,
-                                                            SettingsTorsoOuter.torsoOuterSettings.astridJacketWetWarmth,
-                                                            SettingsTorsoOuter.torsoOuterSettings.astridJacketWindproof,
-                                                            SettingsTorsoOuter.torsoOuterSettings.astridJacketWaterproof,
-                                                            SettingsTorsoOuter.torsoOuterSettings.astridJacketProtection,
-                                                            SettingsTorsoOuter.torsoOuterSettings.astridJacketMobility,
-                                                            SettingsTorsoOuter.torsoOuterSettings.astridJacketWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_AstridJeans" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsLegs.legsSettings.astridJeansWarmth,
-                                                            SettingsLegs.legsSettings.astridJeansWetWarmth,
-                                                            SettingsLegs.legsSettings.astridJeansWindproof,
-                                                            SettingsLegs.legsSettings.astridJeansWaterproof,
-                                                            SettingsLegs.legsSettings.astridJeansProtection,
-                                                            SettingsLegs.legsSettings.astridJeansMobility,
-                                                            SettingsLegs.legsSettings.astridJeansWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_AstridSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsTorsoInner.torsoInnerSettings.astridSweaterWarmth,
-                                                            SettingsTorsoInner.torsoInnerSettings.astridSweaterWetWarmth,
-                                                            SettingsTorsoInner.torsoInnerSettings.astridSweaterWindproof,
-                                                            SettingsTorsoInner.torsoInnerSettings.astridSweaterWaterproof,
-                                                            SettingsTorsoInner.torsoInnerSettings.astridSweaterProtection,
-                                                            SettingsTorsoInner.torsoInnerSettings.astridSweaterMobility,
-                                                            SettingsTorsoInner.torsoInnerSettings.astridSweaterWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_AstridToque" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsHead.headSettings.astridToqueWarmth,
-                                                            SettingsHead.headSettings.astridToqueWetWarmth,
-                                                            SettingsHead.headSettings.astridToqueWindproof,
-                                                            SettingsHead.headSettings.astridToqueWaterproof,
-                                                            SettingsHead.headSettings.astridToqueProtection,
-                                                            SettingsHead.headSettings.astridToqueMobility,
-                                                            SettingsHead.headSettings.astridToqueWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_Balaclava" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
+                    string properName = __instance.name.Contains("Clone") ? __instance.name.Replace("(Clone)", "") : __instance.name;
+
+                    
+                    if (properName == "GEAR_Balaclava" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHead.headSettings.balaclavaWarmth,
@@ -102,7 +41,7 @@ namespace ClothingTweaker
                                                             SettingsHead.headSettings.balaclavaMobility,
                                                             SettingsHead.headSettings.balaclavaWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BallisticVest" && SettingsMain.mainSettings.showAccessories != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BallisticVest" && SettingsMain.mainSettings.showAccessories != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsAccessories.accessorySettings.ballisticVestWarmth,
@@ -113,7 +52,7 @@ namespace ClothingTweaker
                                                             SettingsAccessories.accessorySettings.ballisticVestMobility,
                                                             SettingsAccessories.accessorySettings.ballisticVestWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BaseballCap" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BaseballCap" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHead.headSettings.baseballCapWarmth,
@@ -124,7 +63,7 @@ namespace ClothingTweaker
                                                             SettingsHead.headSettings.baseballCapMobility,
                                                             SettingsHead.headSettings.baseballCapWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BasicBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BasicBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.trailBootsWarmth,
@@ -135,7 +74,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.trailBootsMobility,
                                                             SettingsFeet.feetSettings.trailBootsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BasicGloves" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BasicGloves" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHands.handsSettings.drivingGlovesWarmth,
@@ -146,7 +85,7 @@ namespace ClothingTweaker
                                                             SettingsHands.handsSettings.drivingGlovesMobility,
                                                             SettingsHands.handsSettings.drivingGlovesWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BasicShoes" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BasicShoes" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.runningShoesWarmth,
@@ -157,7 +96,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.runningShoesMobility,
                                                             SettingsFeet.feetSettings.runningShoesWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BasicWinterCoat" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BasicWinterCoat" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.windbreakerWarmth,
@@ -168,7 +107,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.windbreakerMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.windbreakerWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BasicWoolHat" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BasicWoolHat" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHead.headSettings.cottonToqueWarmth,
@@ -179,7 +118,7 @@ namespace ClothingTweaker
                                                             SettingsHead.headSettings.cottonToqueMobility,
                                                             SettingsHead.headSettings.cottonToqueWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BasicWoolScarf" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BasicWoolScarf" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHead.headSettings.woolScarfWarmth,
@@ -190,7 +129,7 @@ namespace ClothingTweaker
                                                             SettingsHead.headSettings.woolScarfMobility,
                                                             SettingsHead.headSettings.woolScarfWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BearSkinCoat" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BearSkinCoat" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.bearskinCoatWarmth,
@@ -201,7 +140,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.bearskinCoatMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.bearskinCoatWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_CargoPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_CargoPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsLegs.legsSettings.cargoPantsWarmth,
@@ -212,7 +151,7 @@ namespace ClothingTweaker
                                                             SettingsLegs.legsSettings.cargoPantsMobility,
                                                             SettingsLegs.legsSettings.cargoPantsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_ClimbingSocks" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_ClimbingSocks" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.climbingSocksWarmth,
@@ -223,7 +162,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.climbingSocksMobility,
                                                             SettingsFeet.feetSettings.climbingSocksWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_CombatBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_CombatBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.combatBootsWarmth,
@@ -234,7 +173,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.combatBootsMobility,
                                                             SettingsFeet.feetSettings.combatBootsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_CombatPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_CombatPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsLegs.legsSettings.combatPantsWarmth,
@@ -245,7 +184,7 @@ namespace ClothingTweaker
                                                             SettingsLegs.legsSettings.combatPantsMobility,
                                                             SettingsLegs.legsSettings.combatPantsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_CottonHoodie" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_CottonHoodie" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoInner.torsoInnerSettings.hoodieWarmth,
@@ -256,7 +195,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoInner.torsoInnerSettings.hoodieMobility,
                                                             SettingsTorsoInner.torsoInnerSettings.hoodieWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_CottonScarf" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_CottonScarf" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHead.headSettings.cottonScarfWarmth,
@@ -267,7 +206,7 @@ namespace ClothingTweaker
                                                             SettingsHead.headSettings.cottonScarfMobility,
                                                             SettingsHead.headSettings.cottonScarfWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_CottonShirt" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_CottonShirt" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoInner.torsoInnerSettings.dressShirtWarmth,
@@ -278,7 +217,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoInner.torsoInnerSettings.dressShirtMobility,
                                                             SettingsTorsoInner.torsoInnerSettings.dressShirtWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_CottonSocks" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_CottonSocks" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.sportsSocksWarmth,
@@ -289,7 +228,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.sportsSocksMobility,
                                                             SettingsFeet.feetSettings.sportsSocksWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_CowichanSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_CowichanSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoInner.torsoInnerSettings.cowichanSweaterWarmth,
@@ -300,7 +239,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoInner.torsoInnerSettings.cowichanSweaterMobility,
                                                             SettingsTorsoInner.torsoInnerSettings.cowichanSweaterWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_Crampons" && SettingsMain.mainSettings.showAccessories != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_Crampons" && SettingsMain.mainSettings.showAccessories != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsAccessories.accessorySettings.cramponsWarmth,
@@ -311,7 +250,7 @@ namespace ClothingTweaker
                                                             SettingsAccessories.accessorySettings.cramponsMobility,
                                                             SettingsAccessories.accessorySettings.cramponsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_DeerSkinBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_DeerSkinBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.deerskinBootsWarmth,
@@ -322,7 +261,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.deerskinBootsMobility,
                                                             SettingsFeet.feetSettings.deerskinBootsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_DeerSkinPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_DeerSkinPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsLegs.legsSettings.deerskinPantsWarmth,
@@ -333,7 +272,7 @@ namespace ClothingTweaker
                                                             SettingsLegs.legsSettings.deerskinPantsMobility,
                                                             SettingsLegs.legsSettings.deerskinPantsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_DownParka" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_DownParka" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.urbanParkaWarmth,
@@ -344,7 +283,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.urbanParkaMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.urbanParkaWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_DownSkiJacket" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_DownSkiJacket" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.skiJacketWarmth,
@@ -355,7 +294,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.skiJacketMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.skiJacketWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_DownVest" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_DownVest" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.downVestWarmth,
@@ -366,7 +305,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.downVestMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.downVestWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_EarMuffs" && SettingsMain.mainSettings.showAccessories != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_EarMuffs" && SettingsMain.mainSettings.showAccessories != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsAccessories.accessorySettings.woolEarWrapWarmth,
@@ -377,7 +316,7 @@ namespace ClothingTweaker
                                                             SettingsAccessories.accessorySettings.woolEarWrapMobility,
                                                             SettingsAccessories.accessorySettings.woolEarWrapWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_FishermanSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_FishermanSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoInner.torsoInnerSettings.fishermansSweaterWarmth,
@@ -388,7 +327,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoInner.torsoInnerSettings.fishermansSweaterMobility,
                                                             SettingsTorsoInner.torsoInnerSettings.fishermansSweaterWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_FleeceMittens" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_FleeceMittens" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHands.handsSettings.fleeceMittensWarmth,
@@ -399,7 +338,7 @@ namespace ClothingTweaker
                                                             SettingsHands.handsSettings.fleeceMittensMobility,
                                                             SettingsHands.handsSettings.fleeceMittensWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_FleeceSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_FleeceSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoInner.torsoInnerSettings.sweatshirtWarmth,
@@ -410,7 +349,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoInner.torsoInnerSettings.sweatshirtMobility,
                                                             SettingsTorsoInner.torsoInnerSettings.sweatshirtWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_Gauntlets" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_Gauntlets" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHands.handsSettings.gauntletsWarmth,
@@ -421,7 +360,7 @@ namespace ClothingTweaker
                                                             SettingsHands.handsSettings.gauntletsMobility,
                                                             SettingsHands.handsSettings.gauntletsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_GreyMotherBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_GreyMotherBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.mountaineeringBootsWarmth,
@@ -432,7 +371,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.mountaineeringBootsMobility,
                                                             SettingsFeet.feetSettings.mountaineeringBootsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_HeavyParka" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_HeavyParka" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.oldFashionedParkaWarmth,
@@ -443,7 +382,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.oldFashionedParkaMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.oldFashionedParkaWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_HeavyWoolSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_HeavyWoolSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoInner.torsoInnerSettings.thickWoolSweaterWarmth,
@@ -454,7 +393,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoInner.torsoInnerSettings.thickWoolSweaterMobility,
                                                             SettingsTorsoInner.torsoInnerSettings.thickWoolSweaterWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_InsulatedBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_InsulatedBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.insulatedBootsWarmth,
@@ -465,7 +404,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.insulatedBootsMobility,
                                                             SettingsFeet.feetSettings.insulatedBootsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_InsulatedPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_InsulatedPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsLegs.legsSettings.snowPantsWarmth,
@@ -476,7 +415,7 @@ namespace ClothingTweaker
                                                             SettingsLegs.legsSettings.snowPantsMobility,
                                                             SettingsLegs.legsSettings.snowPantsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_InsulatedVest" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_InsulatedVest" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.sportVestWarmth,
@@ -487,7 +426,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.sportVestMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.sportVestWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_Jeans" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_Jeans" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsLegs.legsSettings.jeansWarmth,
@@ -498,7 +437,7 @@ namespace ClothingTweaker
                                                             SettingsLegs.legsSettings.jeansMobility,
                                                             SettingsLegs.legsSettings.jeansWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_LeatherShoes" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_LeatherShoes" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.leatherShoesWarmth,
@@ -509,7 +448,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.leatherShoesMobility,
                                                             SettingsFeet.feetSettings.leatherShoesWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_LightParka" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_LightParka" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.simpleParkaWarmth,
@@ -520,7 +459,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.simpleParkaMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.simpleParkaWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_LongUnderwear" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_LongUnderwear" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsLegs.legsSettings.thermalUnderwearWarmth,
@@ -531,7 +470,7 @@ namespace ClothingTweaker
                                                             SettingsLegs.legsSettings.thermalUnderwearMobility,
                                                             SettingsLegs.legsSettings.thermalUnderwearWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_LongUnderwearWool" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_LongUnderwearWool" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsLegs.legsSettings.woolLongjohnsWarmth,
@@ -542,7 +481,7 @@ namespace ClothingTweaker
                                                             SettingsLegs.legsSettings.woolLongjohnsMobility,
                                                             SettingsLegs.legsSettings.woolLongjohnsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_MackinawJacket" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_MackinawJacket" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.mackinawJacketWarmth,
@@ -553,7 +492,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.mackinawJacketMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.mackinawJacketWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_MilitaryParka" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_MilitaryParka" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.militaryCoatWarmth,
@@ -564,7 +503,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.militaryCoatMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.militaryCoatWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_Mittens" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_Mittens" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHands.handsSettings.woolMittensWarmth,
@@ -575,7 +514,7 @@ namespace ClothingTweaker
                                                             SettingsHands.handsSettings.woolMittensMobility,
                                                             SettingsHands.handsSettings.woolMittensWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_MooseHideBag" && SettingsMain.mainSettings.showAccessories != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_MooseHideBag" && SettingsMain.mainSettings.showAccessories != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsAccessories.accessorySettings.moosehideSatchelWarmth,
@@ -586,7 +525,7 @@ namespace ClothingTweaker
                                                             SettingsAccessories.accessorySettings.moosehideSatchelMobility,
                                                             SettingsAccessories.accessorySettings.moosehideSatchelWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_MooseHideCloak" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_MooseHideCloak" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.moosehideCloakWarmth,
@@ -597,7 +536,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.moosehideCloakMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.moosehideCloakWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_MuklukBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_MuklukBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.mukluksWarmth,
@@ -608,7 +547,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.mukluksMobility,
                                                             SettingsFeet.feetSettings.mukluksWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_PlaidShirt" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_PlaidShirt" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoInner.torsoInnerSettings.plaidShirtWarmth,
@@ -619,7 +558,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoInner.torsoInnerSettings.plaidShirtMobility,
                                                             SettingsTorsoInner.torsoInnerSettings.plaidShirtWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_PremiumWinterCoat" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_PremiumWinterCoat" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.expeditionParkaWarmth,
@@ -630,7 +569,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.expeditionParkaMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.expeditionParkaWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_QualityWinterCoat" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_QualityWinterCoat" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.marinersPeaCoatWarmth,
@@ -641,7 +580,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.marinersPeaCoatMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.marinersPeaCoatWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_RabbitskinHat" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_RabbitskinHat" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHead.headSettings.rabbitskinHatWarmth,
@@ -652,7 +591,7 @@ namespace ClothingTweaker
                                                             SettingsHead.headSettings.rabbitskinHatMobility,
                                                             SettingsHead.headSettings.rabbitskinHatWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_RabbitSkinMittens" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_RabbitSkinMittens" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHands.handsSettings.rabbitskinMittsWarmth,
@@ -663,7 +602,7 @@ namespace ClothingTweaker
                                                             SettingsHands.handsSettings.rabbitskinMittsMobility,
                                                             SettingsHands.handsSettings.rabbitskinMittsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_SkiBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_SkiBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.skiBootsWarmth,
@@ -674,7 +613,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.skiBootsMobility,
                                                             SettingsFeet.feetSettings.skiBootsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_SkiGloves" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_SkiGloves" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHands.handsSettings.skiGlovesWarmth,
@@ -685,7 +624,7 @@ namespace ClothingTweaker
                                                             SettingsHands.handsSettings.skiGlovesMobility,
                                                             SettingsHands.handsSettings.skiGlovesWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_SkiJacket" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_SkiJacket" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.lightShellWarmth,
@@ -696,7 +635,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.lightShellMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.lightShellWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_TeeShirt" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_TeeShirt" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoInner.torsoInnerSettings.tshirtWarmth,
@@ -707,7 +646,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoInner.torsoInnerSettings.tshirtMobility,
                                                             SettingsTorsoInner.torsoInnerSettings.tshirtWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_Toque" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_Toque" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHead.headSettings.woolToqueWarmth,
@@ -718,73 +657,7 @@ namespace ClothingTweaker
                                                             SettingsHead.headSettings.woolToqueMobility,
                                                             SettingsHead.headSettings.woolToqueWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WillBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsFeet.feetSettings.mackenziesBootsWarmth,
-                                                            SettingsFeet.feetSettings.mackenziesBootsWetWarmth,
-                                                            SettingsFeet.feetSettings.mackenziesBootsWindproof,
-                                                            SettingsFeet.feetSettings.mackenziesBootsWaterproof,
-                                                            SettingsFeet.feetSettings.mackenziesBootsProtection,
-                                                            SettingsFeet.feetSettings.mackenziesBootsMobility,
-                                                            SettingsFeet.feetSettings.mackenziesBootsWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_WillPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsLegs.legsSettings.mackenziesPantsWarmth,
-                                                            SettingsLegs.legsSettings.mackenziesPantsWetWarmth,
-                                                            SettingsLegs.legsSettings.mackenziesPantsWindproof,
-                                                            SettingsLegs.legsSettings.mackenziesPantsWaterproof,
-                                                            SettingsLegs.legsSettings.mackenziesPantsProtection,
-                                                            SettingsLegs.legsSettings.mackenziesPantsMobility,
-                                                            SettingsLegs.legsSettings.mackenziesPantsWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_WillParka" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsTorsoOuter.torsoOuterSettings.mackenziesParkaWarmth,
-                                                            SettingsTorsoOuter.torsoOuterSettings.mackenziesParkaWetWarmth,
-                                                            SettingsTorsoOuter.torsoOuterSettings.mackenziesParkaWindproof,
-                                                            SettingsTorsoOuter.torsoOuterSettings.mackenziesParkaWaterproof,
-                                                            SettingsTorsoOuter.torsoOuterSettings.mackenziesParkaProtection,
-                                                            SettingsTorsoOuter.torsoOuterSettings.mackenziesParkaMobility,
-                                                            SettingsTorsoOuter.torsoOuterSettings.mackenziesParkaWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_WillShirt" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesShirtWarmth,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesShirtWetWarmth,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesShirtWindproof,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesShirtWaterproof,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesShirtProtection,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesShirtMobility,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesShirtWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_WillSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesSweaterWarmth,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesSweaterWetWarmth,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesSweaterWindproof,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesSweaterWaterproof,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesSweaterProtection,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesSweaterMobility,
-                                                            SettingsTorsoInner.torsoInnerSettings.mackenziesSweaterWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_WillToque" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
-                    {
-                        Patches.changePostfabParameters(__instance,
-                                                            SettingsHead.headSettings.mackenziesToqueWarmth,
-                                                            SettingsHead.headSettings.mackenziesToqueWetWarmth,
-                                                            SettingsHead.headSettings.mackenziesToqueWindproof,
-                                                            SettingsHead.headSettings.mackenziesToqueWaterproof,
-                                                            SettingsHead.headSettings.mackenziesToqueProtection,
-                                                            SettingsHead.headSettings.mackenziesToqueMobility,
-                                                            SettingsHead.headSettings.mackenziesToqueWeight);
-                    }
-                    else if (__instance.m_GearName == "GEAR_WolfSkinCape" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WolfSkinCape" && SettingsMain.mainSettings.showTorsoOuter != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoOuter.torsoOuterSettings.wolfskinCoatWarmth,
@@ -795,7 +668,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoOuter.torsoOuterSettings.wolfskinCoatMobility,
                                                             SettingsTorsoOuter.torsoOuterSettings.wolfskinCoatWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WoolShirt" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WoolShirt" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoInner.torsoInnerSettings.woolShirtWarmth,
@@ -806,7 +679,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoInner.torsoInnerSettings.woolShirtMobility,
                                                             SettingsTorsoInner.torsoInnerSettings.woolShirtWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WoolSocks" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WoolSocks" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.woolSocksWarmth,
@@ -817,7 +690,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.woolSocksMobility,
                                                             SettingsFeet.feetSettings.woolSocksWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WoolSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WoolSweater" && SettingsMain.mainSettings.showTorsoInner != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsTorsoInner.torsoInnerSettings.thinWoolSweaterWarmth,
@@ -828,7 +701,7 @@ namespace ClothingTweaker
                                                             SettingsTorsoInner.torsoInnerSettings.thinWoolSweaterMobility,
                                                             SettingsTorsoInner.torsoInnerSettings.thinWoolSweaterWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WoolWrap" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WoolWrap" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHead.headSettings.longWoolScarfWarmth,
@@ -839,7 +712,7 @@ namespace ClothingTweaker
                                                             SettingsHead.headSettings.longWoolScarfMobility,
                                                             SettingsHead.headSettings.longWoolScarfWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WoolWrapCap" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WoolWrapCap" && SettingsMain.mainSettings.showHead != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHead.headSettings.fleeceCowlWarmth,
@@ -850,7 +723,7 @@ namespace ClothingTweaker
                                                             SettingsHead.headSettings.fleeceCowlMobility,
                                                             SettingsHead.headSettings.fleeceCowlWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WorkBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WorkBoots" && SettingsMain.mainSettings.showFeet != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsFeet.feetSettings.workBootsWarmth,
@@ -861,7 +734,7 @@ namespace ClothingTweaker
                                                             SettingsFeet.feetSettings.workBootsMobility,
                                                             SettingsFeet.feetSettings.workBootsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WorkGloves" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WorkGloves" && SettingsMain.mainSettings.showHands != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsHands.handsSettings.workGlovesWarmth,
@@ -872,7 +745,7 @@ namespace ClothingTweaker
                                                             SettingsHands.handsSettings.workGlovesMobility,
                                                             SettingsHands.handsSettings.workGlovesWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WorkPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WorkPants" && SettingsMain.mainSettings.showLegs != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsLegs.legsSettings.workPantsWarmth,
@@ -883,7 +756,7 @@ namespace ClothingTweaker
                                                             SettingsLegs.legsSettings.workPantsMobility,
                                                             SettingsLegs.legsSettings.workPantsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BeanieCap" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BeanieCap" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.beanieCapWarmth,
@@ -894,7 +767,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.beanieCapMobility,
                                                             SettingsModClothes.modClothesSettings.beanieCapWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_SkiGoggles" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_SkiGoggles" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.skiGogglesWarmth,
@@ -905,7 +778,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.skiGogglesMobility,
                                                             SettingsModClothes.modClothesSettings.skiGogglesWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_SkiMask" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_SkiMask" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.skiMaskWarmth,
@@ -916,7 +789,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.skiMaskMobility,
                                                             SettingsModClothes.modClothesSettings.skiMaskWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_PrisonCoat" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_PrisonCoat" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.prisonCoatWarmth,
@@ -927,7 +800,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.prisonCoatMobility,
                                                             SettingsModClothes.modClothesSettings.prisonCoatWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_PrisonPants" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_PrisonPants" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.prisonPantsWarmth,
@@ -938,7 +811,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.prisonPantsMobility,
                                                             SettingsModClothes.modClothesSettings.prisonPantsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_PrisonShirt" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_PrisonShirt" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.prisonShirtWarmth,
@@ -949,7 +822,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.prisonShirtMobility,
                                                             SettingsModClothes.modClothesSettings.prisonShirtWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_BearskinLeggings" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_BearskinLeggings" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.bearskinLeggingsWarmth,
@@ -960,7 +833,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.bearskinLeggingsMobility,
                                                             SettingsModClothes.modClothesSettings.bearskinLeggingsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_DeerskinCoat" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_DeerskinCoat" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.deerskinCoatWarmth,
@@ -971,7 +844,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.deerskinCoatMobility,
                                                             SettingsModClothes.modClothesSettings.deerskinCoatWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_DeerskinGloves" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_DeerskinGloves" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.deerskinGlovesWarmth,
@@ -982,7 +855,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.deerskinGlovesMobility,
                                                             SettingsModClothes.modClothesSettings.deerskinGlovesWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WolfskinBoots" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WolfskinBoots" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.wolfskinBootsWarmth,
@@ -993,7 +866,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.wolfskinBootsMobility,
                                                             SettingsModClothes.modClothesSettings.wolfskinBootsWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_WolfskinHat" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_WolfskinHat" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.wolfskinHatWarmth,
@@ -1004,7 +877,7 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.wolfskinHatMobility,
                                                             SettingsModClothes.modClothesSettings.wolfskinHatWeight);
                     }
-                    else if (__instance.m_GearName == "GEAR_wolfscarf" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
+                    else if (properName == "GEAR_wolfscarf" && SettingsMain.mainSettings.showModClothes != ShowHideDisable.Disable)
                     {
                         Patches.changePostfabParameters(__instance,
                                                             SettingsModClothes.modClothesSettings.wolfskinScarfWarmth,
@@ -1015,6 +888,54 @@ namespace ClothingTweaker
                                                             SettingsModClothes.modClothesSettings.wolfskinScarfMobility,
                                                             SettingsModClothes.modClothesSettings.wolfskinScarfWeight);
                     }
+                    else if (properName == "GEAR_ImprovisedCrampons" && SettingsMain.mainSettings.showAccessories != ShowHideDisable.Disable)
+                    {
+                        Patches.changePostfabParameters(__instance,
+                                                            SettingsAccessories.accessorySettings.improvCramponsWarmth,
+                                                            SettingsAccessories.accessorySettings.improvCramponsWetWarmth,
+                                                            SettingsAccessories.accessorySettings.improvCramponsWindproof,
+                                                            SettingsAccessories.accessorySettings.improvCramponsWaterproof,
+                                                            SettingsAccessories.accessorySettings.improvCramponsProtection,
+                                                            SettingsAccessories.accessorySettings.improvCramponsMobility,
+                                                            SettingsAccessories.accessorySettings.improvCramponsWeight);
+                    }
+                    else if (properName == "GEAR_JacketLeatherFlightA" && SettingsMain.mainSettings.showDLCClothes != ShowHideDisable.Disable)
+                    {
+                        Patches.changePostfabParameters(__instance,
+                                                            SettingsDLC.dlcSettings.flightJacketWarmth,
+                                                            SettingsDLC.dlcSettings.flightJacketWetWarmth,
+                                                            SettingsDLC.dlcSettings.flightJacketWindproof,
+                                                            SettingsDLC.dlcSettings.flightJacketWaterproof,
+                                                            SettingsDLC.dlcSettings.flightJacketProtection,
+                                                            SettingsDLC.dlcSettings.flightJacketMobility,
+                                                            SettingsDLC.dlcSettings.flightJacketWeight);
+                    }
+                    else if (properName == "GEAR_JerseyHockeyA" && SettingsMain.mainSettings.showDLCClothes != ShowHideDisable.Disable)
+                    {
+                        Patches.changePostfabParameters(__instance,
+                                                            SettingsDLC.dlcSettings.hockeyJerseyWarmth,
+                                                            SettingsDLC.dlcSettings.hockeyJerseyWetWarmth,
+                                                            SettingsDLC.dlcSettings.hockeyJerseyWindproof,
+                                                            SettingsDLC.dlcSettings.hockeyJerseyWaterproof,
+                                                            SettingsDLC.dlcSettings.hockeyJerseyProtection,
+                                                            SettingsDLC.dlcSettings.hockeyJerseyMobility,
+                                                            SettingsDLC.dlcSettings.hockeyJerseyWeight);
+                    }
+                    else if (properName == "GEAR_HatLeatherAviatorA" && SettingsMain.mainSettings.showDLCClothes != ShowHideDisable.Disable)
+                    {
+                        Patches.changePostfabParameters(__instance,
+                                                            SettingsDLC.dlcSettings.aviatorCapWarmth,
+                                                            SettingsDLC.dlcSettings.aviatorCapWetWarmth,
+                                                            SettingsDLC.dlcSettings.aviatorCapWindproof,
+                                                            SettingsDLC.dlcSettings.aviatorCapWaterproof,
+                                                            SettingsDLC.dlcSettings.aviatorCapProtection,
+                                                            SettingsDLC.dlcSettings.aviatorCapMobility,
+                                                            SettingsDLC.dlcSettings.aviatorCapWeight);
+                    }
+
+                    
+
+
                 }
             }
         }
@@ -1023,7 +944,7 @@ namespace ClothingTweaker
             //MelonLogger.Msg(__instance.name.ToString() + " ORIGINAL DailyHPDecay: " + __instance.m_DailyHPDecay.ToString());
             //MelonLogger.Msg(__instance.name.ToString() + " ORIGINAL DailyHPDecayWhenWornInside: " + __instance.m_ClothingItem.m_DailyHPDecayWhenWornInside.ToString());
             //MelonLogger.Msg(__instance.name.ToString() + " ORIGINAL DailyHPDecayWhenWornOutside: " + __instance.m_ClothingItem.m_DailyHPDecayWhenWornOutside.ToString());
-            __instance.m_DailyHPDecay *= SettingsMain.mainSettings.clothingDecayDaily;
+            __instance.GearItemData.m_DailyHPDecay *= SettingsMain.mainSettings.clothingDecayDaily;
             __instance.m_ClothingItem.m_DailyHPDecayWhenWornInside *= SettingsMain.mainSettings.clothingDecayIndoors;
             __instance.m_ClothingItem.m_DailyHPDecayWhenWornOutside *= SettingsMain.mainSettings.clothingDecayOutdoors;
             //MelonLogger.Msg(__instance.name.ToString() + " NEW DailyHPDecay: " + __instance.m_DailyHPDecay.ToString());
@@ -1039,12 +960,12 @@ namespace ClothingTweaker
             __instance.m_ClothingItem.m_Waterproofness = waterproof;
             __instance.m_ClothingItem.m_Toughness = protection;
             __instance.m_ClothingItem.m_SprintBarReductionPercent = mobility;
-            __instance.m_WeightKG = weight;
+            __instance.GearItemData.m_BaseWeightKG = weight;
         }
 
         public static void ChangePrefabParameters(string name, float warmth, float wetwarmth, float windproof, float waterproof, float protection, float mobility, float weight)
         {
-            GearItem item = GetGearItemPrefab(name);
+            GearItem item = GearItem.LoadGearItemPrefab(name);
             if (item == null) return;
             item.m_ClothingItem.m_Warmth = warmth;
             item.m_ClothingItem.m_WarmthWhenWet = wetwarmth;
@@ -1052,12 +973,11 @@ namespace ClothingTweaker
             item.m_ClothingItem.m_Waterproofness = waterproof;
             item.m_ClothingItem.m_Toughness = protection;
             item.m_ClothingItem.m_SprintBarReductionPercent = mobility;
-            item.m_WeightKG = weight;
+            item.GearItemData.m_BaseWeightKG = weight;
             if (SettingsMain.mainSettings.clothingDecay == Choice.Custom)
             {
                 updateDecayRates(item);
             }
         }
-        private static GearItem GetGearItemPrefab(string name) => Resources.Load(name).Cast<GameObject>().GetComponent<GearItem>();
     }
 }

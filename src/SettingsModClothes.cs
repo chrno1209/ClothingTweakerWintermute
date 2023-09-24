@@ -604,7 +604,7 @@ namespace ClothingTweaker
 			base.OnConfirm();
 			ChangePrefabs();
 		}
-
+		
 		internal void ChangePrefabs()
 		{
 			if (SettingsMain.mainSettings.modFunction)
@@ -622,6 +622,7 @@ namespace ClothingTweaker
 				}
             }
 		}
+		
 	}
 
 

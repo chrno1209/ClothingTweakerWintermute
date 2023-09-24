@@ -128,44 +128,6 @@ namespace ClothingTweaker
 
 		//Outer
 
-		//Astrid's Boots
-		[Section("Astrid's Boots")]
-		[Name("Warmth")]
-		[Description("Default is 1°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridBootsWarmth = 1.0f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 0.5°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridBootsWetWarmth = 0.5f;
-
-		[Name("Windproof")]
-		[Description("Default is 1°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridBootsWindproof = 1.0f;
-
-		[Name("Waterproof")]
-		[Description("Default is 30%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float astridBootsWaterproof = 0.30f;
-
-		[Name("Protection")]
-		[Description("Default is 5%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float astridBootsProtection = 5.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 3%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float astridBootsMobility = 3.0f;
-
-		[Name("Weight")]
-		[Description("Default is 1 kg")]
-		[Slider(0f, 5f, 101, NumberFormat = "{0:0.##} kg")]
-		public float astridBootsWeight = 1.0f;
-
-
 		//Combat Boots
 		[Section("Combat Boots")]
 		[Name("Warmth")]
@@ -316,44 +278,6 @@ namespace ClothingTweaker
 		[Description("Default is 0.5 kg")]
 		[Slider(0f, 5f, 101, NumberFormat = "{0:0.##} kg")]
 		public float leatherShoesWeight = 0.5f;
-
-
-		//Mackenzie's Boots
-		[Section("Mackenzie's Boots")]
-		[Name("Warmth")]
-		[Description("Default is 1°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesBootsWarmth = 1.0f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 0.5°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesBootsWetWarmth = 0.5f;
-
-		[Name("windproof")]
-		[Description("Default is 1°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesBootsWindproof = 1.0f;
-
-		[Name("Waterproof")]
-		[Description("Default is 30%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float mackenziesBootsWaterproof = 0.3f;
-
-		[Name("Protection")]
-		[Description("Default is 5%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float mackenziesBootsProtection = 5.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 3%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float mackenziesBootsMobility = 3.0f;
-
-		[Name("Weight")]
-		[Description("Default is 1 kg")]
-		[Slider(0f, 5f, 101, NumberFormat = "{0:0.##} kg")]
-		public float mackenziesBootsWeight = 1.0f;
 
 
 		//Mountaineering Boots
@@ -586,9 +510,9 @@ namespace ClothingTweaker
 		protected override void OnConfirm()
 		{
 			base.OnConfirm();
-			ChangePrefabs();
+			//ChangePrefabs();
 		}
-
+		/*
 		internal void ChangePrefabs()
 		{
 			if (SettingsMain.mainSettings.modFunction)
@@ -603,6 +527,7 @@ namespace ClothingTweaker
 											SettingsFeet.feetSettings.deerskinBootsWeight);
 			}
 		}
+		*/
 	}
 
 	internal static class SettingsFeet
@@ -615,7 +540,7 @@ namespace ClothingTweaker
 			{
 				feetSettings = new ClothingTweakerFeetSettings("ClothingTweakerFeet");
 				if (SettingsMain.mainSettings.showFeet == ShowHideDisable.Show) feetSettings.AddToModSettings("Clothing Tweaker: Feet");
-				feetSettings.ChangePrefabs();
+				//feetSettings.ChangePrefabs();
 			}
 		}
 	}

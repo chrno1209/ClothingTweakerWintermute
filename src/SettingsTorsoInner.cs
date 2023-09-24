@@ -8,43 +8,6 @@ namespace ClothingTweaker
 		public ClothingTweakerTorsoInnerSettings(string relativeJsonFilePath) : base(relativeJsonFilePath)
 		{
 		}
-		//Astrid's Sweater
-		[Section("Astrid's Sweater")]
-		[Name("Warmth")]
-		[Description("Default is 0.5°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridSweaterWarmth = 0.5f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 0°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridSweaterWetWarmth = 0.0f;
-
-		[Name("Windproof")]
-		[Description("Default is 1°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float astridSweaterWindproof = 1.0f;
-
-		[Name("Waterproof")]
-		[Description("Default is 10%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float astridSweaterWaterproof = 0.1f;
-
-		[Name("Protection")]
-		[Description("Default is 2%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float astridSweaterProtection = 2.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 0%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float astridSweaterMobility = 0.0f;
-
-		[Name("Weight")]
-		[Description("Default is 0.25 kg")]
-		[Slider(0f, 1f, 21, NumberFormat = "{0:0.##} kg")]
-		public float astridSweaterWeight = 0.25f;
-
 
 		//Cowichan Sweater
 		[Section("Cowichan Sweater")]
@@ -196,82 +159,6 @@ namespace ClothingTweaker
 		[Description("Default is 0.25 kg")]
 		[Slider(0f, 1f, 21, NumberFormat = "{0:0.##} kg")]
 		public float hoodieWeight = 0.25f;
-
-
-		//Mackenzie's Shirt
-		[Section("Mackenzie's Shirt")]
-		[Name("Warmth")]
-		[Description("Default is 0.5°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesShirtWarmth = 0.5f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 0°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesShirtWetWarmth = 0.0f;
-
-		[Name("Windproof")]
-		[Description("Default is 0.5°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesShirtWindproof = 0.5f;
-
-		[Name("Waterproof")]
-		[Description("Default is 20%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float mackenziesShirtWaterproof = 0.2f;
-
-		[Name("Protection")]
-		[Description("Default is 1%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float mackenziesShirtProtection = 1.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 0%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float mackenziesShirtMobility = 0.0f;
-
-		[Name("Weight")]
-		[Description("Default is 0.25 kg")]
-		[Slider(0f, 1f, 21, NumberFormat = "{0:0.##} kg")]
-		public float mackenziesShirtWeight = 0.25f;
-
-
-		//Mackenzie's Sweater
-		[Section("Mackenzie's Sweater")]
-		[Name("Warmth")]
-		[Description("Default is 0.5°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesSweaterWarmth = 0.5f;
-
-		[Name("Warmth When Wet")]
-		[Description("Default is 0°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesSweaterWetWarmth = 0.0f;
-
-		[Name("Windproof")]
-		[Description("Default is 1°C")]
-		[Slider(0f, 10f, 41, NumberFormat = "{0:0.##}°C")]
-		public float mackenziesSweaterWindproof = 1.0f;
-
-		[Name("Waterproof")]
-		[Description("Default is 10%")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
-		public float mackenziesSweaterWaterproof = 0.1f;
-
-		[Name("Protection")]
-		[Description("Default is 2%")]
-		[Slider(0f, 50f, 51, NumberFormat = "{0:F0}%")]
-		public float mackenziesSweaterProtection = 2.0f;
-
-		[Name("Mobility")]
-		[Description("Default is 0%")]
-		[Slider(0f, 25f, 26, NumberFormat = "{0:F0}%")]
-		public float mackenziesSweaterMobility = 0.0f;
-
-		[Name("Weight")]
-		[Description("Default is 0.25 kg")]
-		[Slider(0f, 1f, 21, NumberFormat = "{0:0.##} kg")]
-		public float mackenziesSweaterWeight = 0.25f;
 
 
 		//Plaid Shirt
@@ -500,7 +387,15 @@ namespace ClothingTweaker
 		[Description("Default is 0.25 kg")]
 		[Slider(0f, 1f, 21, NumberFormat = "{0:0.##} kg")]
 		public float woolShirtWeight = 0.25f;
-	}
+
+        protected override void OnConfirm()
+        {
+            base.OnConfirm();
+            //ChangePrefabs();
+        }
+    }
+
+
 
 	internal static class SettingsTorsoInner
 	{
