@@ -29,7 +29,7 @@ Based on [FurClothingMod](https://github.com/ds5678/FurClothingMod) by ds5678.
 [ModSettings](https://github.com/zeobviouslyfakeacc/ModSettings/releases)
 
 ## Installation:
-1. Download ```ClothingTweaker.dll``` from [releases](https://github.com/GruffCassquatch/ClothingTweaker/releases)
+1. Download ```ClothingTweaker.dll``` from [releases](https://github.com/HAHAYOUDEAD/ClothingTweaker/releases)
 2. Drop ```ClothingTweaker.dll``` into your Mods folder
 3. If you are updating from an older version, you may need to delete the ```ClothingTweaker.json``` files from your Mods folder as old json's can cause errors if the mod's Settings have been changed.
 
