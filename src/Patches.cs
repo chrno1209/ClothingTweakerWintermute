@@ -4,6 +4,7 @@ using UnityEngine;
 using MelonLoader;
 using Il2Cpp;
 using ModSettings;
+using Il2CppTLD.IntBackedUnit;
 
 namespace ClothingTweaker
 {
@@ -960,7 +961,7 @@ namespace ClothingTweaker
             __instance.m_ClothingItem.m_Waterproofness = waterproof;
             __instance.m_ClothingItem.m_Toughness = protection;
             __instance.m_ClothingItem.m_SprintBarReductionPercent = mobility;
-            __instance.GearItemData.m_BaseWeightKG = weight;
+            __instance.GearItemData.m_BaseWeight = ItemWeight.FromKilograms(weight);
         }
 
         public static void ChangePrefabParameters(string name, float warmth, float wetwarmth, float windproof, float waterproof, float protection, float mobility, float weight)
@@ -973,7 +974,7 @@ namespace ClothingTweaker
             item.m_ClothingItem.m_Waterproofness = waterproof;
             item.m_ClothingItem.m_Toughness = protection;
             item.m_ClothingItem.m_SprintBarReductionPercent = mobility;
-            item.GearItemData.m_BaseWeightKG = weight;
+            item.GearItemData.m_BaseWeight = ItemWeight.FromKilograms(weight);
             if (SettingsMain.mainSettings.clothingDecay == Choice.Custom)
             {
                 updateDecayRates(item);

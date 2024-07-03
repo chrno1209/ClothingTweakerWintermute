@@ -32,17 +32,17 @@ namespace ClothingTweaker
 
 		[Name("     While Not Wearing")]
 		[Description("Decay rate over time, while not wearing.\n100% = Game Default rate,\n50% = Half the Game Default rate,\n0% = No decay.")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
+		[Slider(0f, 1.5f, 151, NumberFormat = "{0:P0}")]
 		public float clothingDecayDaily = 1f;
 
 		[Name("     While Wearing Indoors")]
 		[Description("Decay while wearing indoors.\n100% = Game Default rate,\n50% = Half the Game Default rate,\n0% = No decay.")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
+		[Slider(0f, 1.5f, 151, NumberFormat = "{0:P0}")]
 		public float clothingDecayIndoors = 1f;
 
 		[Name("     While Wearing Outdoors")]
 		[Description("Decay while wearing outdoors.\n100% = Game Default rate,\n50% = Half the Game Default rate,\n0% = No decay.")]
-		[Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
+		[Slider(0f, 1.5f, 151, NumberFormat = "{0:P0}")]
 		public float clothingDecayOutdoors = 1f;
 
 
