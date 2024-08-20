@@ -609,17 +609,17 @@ namespace ClothingTweaker
 		{
 			if (SettingsMain.mainSettings.modFunction)
 			{
-				if (wolfskinScarf)
-				{
-					Patches.ChangePrefabParameters("GEAR_wolfscarf",
-													SettingsModClothes.modClothesSettings.wolfskinScarfWarmth,
-													SettingsModClothes.modClothesSettings.wolfskinScarfWetWarmth,
-													SettingsModClothes.modClothesSettings.wolfskinScarfWindproof,
-													SettingsModClothes.modClothesSettings.wolfskinScarfWaterproof,
-													SettingsModClothes.modClothesSettings.wolfskinScarfProtection,
-													SettingsModClothes.modClothesSettings.wolfskinScarfMobility,
-													SettingsModClothes.modClothesSettings.wolfskinScarfWeight);
-				}
+				//if (wolfskinScarf)
+				//{
+				//	Patches.ChangePrefabParameters("GEAR_wolfscarf",
+				//									SettingsModClothes.modClothesSettings.wolfskinScarfWarmth,
+				//									SettingsModClothes.modClothesSettings.wolfskinScarfWetWarmth,
+				//									SettingsModClothes.modClothesSettings.wolfskinScarfWindproof,
+				//									SettingsModClothes.modClothesSettings.wolfskinScarfWaterproof,
+				//									SettingsModClothes.modClothesSettings.wolfskinScarfProtection,
+				//									SettingsModClothes.modClothesSettings.wolfskinScarfMobility,
+				//									SettingsModClothes.modClothesSettings.wolfskinScarfWeight);
+				//}
             }
 		}
 		

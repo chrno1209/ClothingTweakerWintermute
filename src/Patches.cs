@@ -4,13 +4,12 @@ using UnityEngine;
 using MelonLoader;
 using Il2Cpp;
 using ModSettings;
-using Il2CppTLD.IntBackedUnit;
 
 namespace ClothingTweaker
 {
     internal static class Patches
     {
-        [HarmonyPatch(typeof(GearItem), "Awake")]
+        [HarmonyPatch(typeof(GearItem), nameof(GearItem.Awake))]
         private static class ChangeClothingParameters
         {
             internal static void Postfix(GearItem __instance)
@@ -945,7 +944,7 @@ namespace ClothingTweaker
             //MelonLogger.Msg(__instance.name.ToString() + " ORIGINAL DailyHPDecay: " + __instance.m_DailyHPDecay.ToString());
             //MelonLogger.Msg(__instance.name.ToString() + " ORIGINAL DailyHPDecayWhenWornInside: " + __instance.m_ClothingItem.m_DailyHPDecayWhenWornInside.ToString());
             //MelonLogger.Msg(__instance.name.ToString() + " ORIGINAL DailyHPDecayWhenWornOutside: " + __instance.m_ClothingItem.m_DailyHPDecayWhenWornOutside.ToString());
-            __instance.GearItemData.m_DailyHPDecay *= SettingsMain.mainSettings.clothingDecayDaily;
+            __instance.m_DailyHPDecay *= SettingsMain.mainSettings.clothingDecayDaily;
             __instance.m_ClothingItem.m_DailyHPDecayWhenWornInside *= SettingsMain.mainSettings.clothingDecayIndoors;
             __instance.m_ClothingItem.m_DailyHPDecayWhenWornOutside *= SettingsMain.mainSettings.clothingDecayOutdoors;
             //MelonLogger.Msg(__instance.name.ToString() + " NEW DailyHPDecay: " + __instance.m_DailyHPDecay.ToString());
@@ -961,24 +960,24 @@ namespace ClothingTweaker
             __instance.m_ClothingItem.m_Waterproofness = waterproof;
             __instance.m_ClothingItem.m_Toughness = protection;
             __instance.m_ClothingItem.m_SprintBarReductionPercent = mobility;
-            __instance.GearItemData.m_BaseWeight = ItemWeight.FromKilograms(weight);
+            __instance.m_WeightKG = weight;
         }
 
-        public static void ChangePrefabParameters(string name, float warmth, float wetwarmth, float windproof, float waterproof, float protection, float mobility, float weight)
-        {
-            GearItem item = GearItem.LoadGearItemPrefab(name);
-            if (item == null) return;
-            item.m_ClothingItem.m_Warmth = warmth;
-            item.m_ClothingItem.m_WarmthWhenWet = wetwarmth;
-            item.m_ClothingItem.m_Windproof = windproof;
-            item.m_ClothingItem.m_Waterproofness = waterproof;
-            item.m_ClothingItem.m_Toughness = protection;
-            item.m_ClothingItem.m_SprintBarReductionPercent = mobility;
-            item.GearItemData.m_BaseWeight = ItemWeight.FromKilograms(weight);
-            if (SettingsMain.mainSettings.clothingDecay == Choice.Custom)
-            {
-                updateDecayRates(item);
-            }
-        }
+        //public static void ChangePrefabParameters(string name, float warmth, float wetwarmth, float windproof, float waterproof, float protection, float mobility, float weight)
+        //{
+        //    GearItem item = GearItem.LoadGearItemPrefab(name);
+        //    if (item == null) return;
+        //    item.m_ClothingItem.m_Warmth = warmth;
+        //    item.m_ClothingItem.m_WarmthWhenWet = wetwarmth;
+        //    item.m_ClothingItem.m_Windproof = windproof;
+        //    item.m_ClothingItem.m_Waterproofness = waterproof;
+        //    item.m_ClothingItem.m_Toughness = protection;
+        //    item.m_ClothingItem.m_SprintBarReductionPercent = mobility;
+        //    item.m_WeightKG = weight;
+        //    if (SettingsMain.mainSettings.clothingDecay == Choice.Custom)
+        //    {
+        //        updateDecayRates(item);
+        //    }
+        //}
     }
 }
